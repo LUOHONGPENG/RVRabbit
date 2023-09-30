@@ -47,6 +47,6 @@ TagManager:
   - name: Floor
     uniqueID: 65077185
     locked: 0
-  - name: Item
+  - name: Furniture
     uniqueID: 2305298961
     locked: 0
