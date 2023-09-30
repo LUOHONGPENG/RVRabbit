@@ -37,6 +37,33 @@ MonoBehaviour:
     height: 1
     width: 1
     xoffset: 0
+    yoffset: 0.2
+    canBuy: 1
+    iconUrl: spCoffee
+  - id: 2002
+    name: LoveLamp
+    desc: 
+    height: 1
+    width: 1
+    xoffset: 0
+    yoffset: 0.2
+    canBuy: 1
+    iconUrl: spLoveLamp
+  - id: 2003
+    name: Rope
+    desc: 
+    height: 1
+    width: 1
+    xoffset: 0
     yoffset: 0
     canBuy: 1
-    iconUrl: 
+    iconUrl: spRope
+  - id: 9001
+    name: SexBed
+    desc: 
+    height: 2
+    width: 1
+    xoffset: 0
+    yoffset: 0
+    canBuy: 0
+    iconUrl: spLoveBed
