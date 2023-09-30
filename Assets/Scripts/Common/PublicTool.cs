@@ -73,4 +73,18 @@ public partial class PublicTool
         }
         return -1;
     }
+
+    #region Occupy
+
+    public static bool CheckRoomOccupy(int moveInKeyID,Vector2Int posID, Vector2Int size)
+    {
+        return GameMgr.Instance.roomMgr.CheckOccupy(moveInKeyID,posID, size);
+    }
+
+    public static void RefreshOccupy()
+    {
+        GameMgr.Instance.roomMgr.RefreshRoomOccupy();
+    }
+
+    #endregion
 }

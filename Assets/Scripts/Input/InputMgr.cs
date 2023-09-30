@@ -74,6 +74,11 @@ public partial class InputMgr : MonoSingleton<InputMgr>
     //Start Drag
     private void Touch_performed(InputAction.CallbackContext obj)
     {
+        if (!isInitInput)
+        {
+            return;
+        }
+
         RaycastHit2D hit = Physics2D.Raycast(GetMousePos(),Vector2.zero,Mathf.Infinity, LayerMask.GetMask("Furniture"));
 
         if (hit.transform == null)
@@ -93,16 +98,21 @@ public partial class InputMgr : MonoSingleton<InputMgr>
     //End Drag
     private void Touch_canceled(InputAction.CallbackContext obj)
     {
-        Vector2 screenPosition = touchPositionAction.ReadValue<Vector2>();
+        if (!isInitInput)
+        {
+            return;
+        }
 
         if(isDragging && draggingFurni != null)
         {
             RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Floor"));
 
-
+            //Release Outside
             if (hit.transform == null)
             {
                 Debug.Log("ReleaseOutside");
+                draggingFurni.SetPosID(new Vector2Int(-1, -1));
+                PublicTool.RefreshOccupy();
                 EndDragFurni();
                 return;
             }
@@ -112,7 +122,21 @@ public partial class InputMgr : MonoSingleton<InputMgr>
             {
                 Debug.Log("ReleaseAtFloor");
                 RoomFloorItem floor = hit.transform.GetComponent<RoomFloorItem>();
-                draggingFurni.SetPosID(floor.GetPosID());
+
+                Vector2Int tarPos = floor.GetPosID();
+                Vector2Int size = draggingFurni.GetSize();
+
+                if (!PublicTool.CheckRoomOccupy(draggingFurni.GetKeyID(),tarPos, size))
+                {
+                    draggingFurni.SetPosID(floor.GetPosID());
+                    PublicTool.RefreshOccupy();
+                }
+                else
+                {
+                    //Back
+                    draggingFurni.BackPos();
+                }
+
                 //Set Position
             }
         }

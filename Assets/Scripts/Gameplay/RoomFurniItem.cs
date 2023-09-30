@@ -9,14 +9,16 @@ public class RoomFurniItem : MonoBehaviour
     public SpriteRenderer spFurni;
     public BoxCollider2D colFurni;
 
-    private int originalID;
-    private int curID;
+    private int keyID;
+    private int originalTypeID;
+    private int curTypeID;
     private Vector2Int posID;
 
-    public void Init(int ID)
+    public void Init(int keyID,int typeID)
     {
-        this.originalID = ID;
-        this.curID = originalID;
+        this.keyID = keyID;
+        this.originalTypeID = typeID;
+        this.curTypeID = originalTypeID;
 
         //Init Sprite
         spFurni.sprite = Resources.Load("Sprite/Furniture/" + GetFurniData().iconUrl, typeof(Sprite)) as Sprite;
@@ -29,22 +31,62 @@ public class RoomFurniItem : MonoBehaviour
             (GetFurniData().height - 1) * GameGlobal.tileSize / 2);
     }
 
-    private FurnitureExcelItem GetFurniData()
+
+
+    #region TypeInfo
+    public int GetKeyID()
     {
-        return GameMgr.Instance.ReadFurnitureData(curID);
+        return keyID;
     }
 
     public int GetOriginalID()
     {
-        return originalID;
+        return originalTypeID;
     }
 
+    private FurnitureExcelItem GetFurniData()
+    {
+        return GameMgr.Instance.ReadFurnitureData(curTypeID);
+    }
+    #endregion
+
+    #region PositionInfo
     public void SetPosID(Vector2Int posID) 
     {
         this.posID = posID;
-        if(posID.x >= 0 && posID.y >= 0)
+        if (posID.x >= 0 && posID.y >= 0)
         {
-           this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
+            this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
+            spFurni.sortingOrder = 99 - posID.y;
+        }
+        else
+        {
+            spFurni.sortingOrder = 99;
         }
     }
+
+    public void BackPos()
+    {
+        if (posID.x >= 0 && posID.y >= 0)
+        {
+            this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
+        }
+        else
+        {
+            this.transform.localPosition = new Vector2(-1, -1);
+        }
+    }
+
+
+    public Vector2Int GetPosID()
+    {
+        return posID;
+    }
+
+    public Vector2Int GetSize()
+    {
+        return new(GetFurniData().width, GetFurniData().height);
+    }
+
+    #endregion
 }
