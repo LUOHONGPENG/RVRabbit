@@ -66,13 +66,6 @@ public partial class InputMgr : MonoSingleton<InputMgr>
     private bool isDragging = false;
     private RoomFurniItem draggingFurni = null;
 
-    private Ray GetMouseRay()
-    {
-        Vector2 screenPosition = touchPositionAction.ReadValue<Vector2>();
-        Ray ray = GameMgr.Instance.mapCamera.ScreenPointToRay(screenPosition);
-        return ray;
-    }
-
     private Vector2 GetMousePos()
     {
         return GameMgr.Instance.mapCamera.ScreenToWorldPoint(touchPositionAction.ReadValue<Vector2>());
@@ -81,12 +74,11 @@ public partial class InputMgr : MonoSingleton<InputMgr>
     //Start Drag
     private void Touch_performed(InputAction.CallbackContext obj)
     {
-        Debug.Log(GetMousePos());
         RaycastHit2D hit = Physics2D.Raycast(GetMousePos(),Vector2.zero,Mathf.Infinity, LayerMask.GetMask("Furniture"));
 
         if (hit.transform == null)
         {
-            Debug.Log("NoHit");
+            Debug.Log("NoHitFurni");
             return;
         }
 
@@ -96,23 +88,33 @@ public partial class InputMgr : MonoSingleton<InputMgr>
             Debug.Log("StartDragFurni");
             draggingFurni = hit.transform.parent.GetComponent<RoomFurniItem>();
         }
-
-        //Debug.Log("Click "+ screenPosition);
     }
 
     //End Drag
     private void Touch_canceled(InputAction.CallbackContext obj)
     {
         Vector2 screenPosition = touchPositionAction.ReadValue<Vector2>();
-        Debug.Log("Canceled");
 
         if(isDragging && draggingFurni != null)
         {
-            Ray ray = GetMouseRay();
+            RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Floor"));
+
+
+            if (hit.transform == null)
+            {
+                Debug.Log("ReleaseOutside");
+                EndDragFurni();
+                return;
+            }
 
             //Release At Floor
-
-            //Release Outside
+            if (hit.transform.GetComponent<RoomFloorItem>() != null)
+            {
+                Debug.Log("ReleaseAtFloor");
+                RoomFloorItem floor = hit.transform.GetComponent<RoomFloorItem>();
+                draggingFurni.SetPosID(floor.GetPosID());
+                //Set Position
+            }
         }
 
         EndDragFurni();
@@ -131,7 +133,6 @@ public partial class InputMgr : MonoSingleton<InputMgr>
     {
         if (isDragging && draggingFurni != null)
         {
-            Ray ray = GetMouseRay();
             draggingFurni.transform.position = GetMousePos();
         }
     }

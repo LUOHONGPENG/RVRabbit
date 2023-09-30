@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class RoomFurniItem : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class RoomFurniItem : MonoBehaviour
 
     private int originalID;
     private int curID;
+    private Vector2Int posID;
 
     public void Init(int ID)
     {
@@ -23,7 +25,7 @@ public class RoomFurniItem : MonoBehaviour
 
         //Init Collider
         colFurni.size = new Vector2(GetFurniData().width * GameGlobal.tileSize, GetFurniData().height * GameGlobal.tileSize);
-        colFurni.offset = new Vector2((GetFurniData().width - 1) * GameGlobal.tileSize / 2, 
+        colFurni.offset = new Vector2((GetFurniData().width - 1) * GameGlobal.tileSize / 2,
             (GetFurniData().height - 1) * GameGlobal.tileSize / 2);
     }
 
@@ -35,5 +37,14 @@ public class RoomFurniItem : MonoBehaviour
     public int GetOriginalID()
     {
         return originalID;
+    }
+
+    public void SetPosID(Vector2Int posID) 
+    {
+        this.posID = posID;
+        if(posID.x >= 0 && posID.y >= 0)
+        {
+           this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
+        }
     }
 }

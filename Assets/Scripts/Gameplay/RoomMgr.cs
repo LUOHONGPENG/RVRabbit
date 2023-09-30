@@ -37,6 +37,7 @@ public class RoomMgr : MonoBehaviour
             {
                 GameObject objFloor = GameObject.Instantiate(pfFloor, tfFloor);
                 RoomFloorItem itemFloor = objFloor.GetComponent<RoomFloorItem>();
+                itemFloor.Init(new Vector2Int(i,j));
                 listFloorView.Add(itemFloor);
                 //Position
                 itemFloor.transform.localPosition = new Vector2(i * GameGlobal.tileSize, j * GameGlobal.tileSize);
@@ -44,12 +45,12 @@ public class RoomMgr : MonoBehaviour
         }
     }
 
-    public void CreateFurniture(int ID,Vector2Int pos)
+    public void CreateFurniture(int ID,Vector2Int posID)
     {
         GameObject objFurni = GameObject.Instantiate(pfFurni, tfFurni);
         RoomFurniItem itemFurni = objFurni.GetComponent<RoomFurniItem>();
-        objFurni.transform.localPosition = new Vector2(pos.x * GameGlobal.tileSize, pos.y * GameGlobal.tileSize);
         itemFurni.Init(ID);
+        itemFurni.SetPosID(posID);
     }
 
 

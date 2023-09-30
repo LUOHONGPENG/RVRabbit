@@ -7,9 +7,12 @@ public class RoomFloorItem : MonoBehaviour
     public SpriteRenderer sr;
     public List<Sprite> listSp = new List<Sprite>();
 
-    public void Init()
+    private Vector2Int posID;
+
+    public void Init(Vector2Int posID)
     {
         ResetView();
+        this.posID = posID;
     }
 
     public void ResetView()
@@ -18,4 +21,8 @@ public class RoomFloorItem : MonoBehaviour
         sr.sprite = listSp[ran];
     }
 
+    public Vector2Int GetPosID()
+    {
+        return posID;
+    }
 }
