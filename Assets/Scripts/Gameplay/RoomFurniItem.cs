@@ -16,10 +16,12 @@ public class RoomFurniItem : MonoBehaviour
         this.originalID = ID;
         this.curID = originalID;
 
+        //Init Sprite
         spFurni.sprite = Resources.Load("Sprite/Furniture/" + GetFurniData().iconUrl, typeof(Sprite)) as Sprite;
         spFurni.transform.localPosition = new Vector2((GetFurniData().width - 1) * GameGlobal.tileSize / 2 + GetFurniData().xoffset,
             (GetFurniData().height - 1) * GameGlobal.tileSize / 2 + GetFurniData().yoffset);
 
+        //Init Collider
         colFurni.size = new Vector2(GetFurniData().width * GameGlobal.tileSize, GetFurniData().height * GameGlobal.tileSize);
         colFurni.offset = new Vector2((GetFurniData().width - 1) * GameGlobal.tileSize / 2, 
             (GetFurniData().height - 1) * GameGlobal.tileSize / 2);

@@ -19,6 +19,7 @@ public class RoomMgr : MonoBehaviour
     {
         ResetRoomView();
 
+        //Test
         PublicTool.ClearChildItem(tfFurni);
         CreateFurniture(1001, new Vector2Int(0, 0));
         CreateFurniture(1002, new Vector2Int(1, 0));

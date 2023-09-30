@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 301863801948783041}
   - component: {fileID: 7521286448333095695}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: colFurni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,5 +190,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spFurni: {fileID: 6130011642866723635}
   colFurni: {fileID: 7521286448333095695}
-  height: 0
-  width: 0
