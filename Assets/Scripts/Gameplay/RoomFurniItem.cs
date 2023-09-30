@@ -20,7 +20,9 @@ public class RoomFurniItem : MonoBehaviour
         spFurni.transform.localPosition = new Vector2((GetFurniData().width - 1) * GameGlobal.tileSize / 2 + GetFurniData().xoffset,
             (GetFurniData().height - 1) * GameGlobal.tileSize / 2 + GetFurniData().yoffset);
 
-        //Col
+        colFurni.size = new Vector2(GetFurniData().width * GameGlobal.tileSize, GetFurniData().height * GameGlobal.tileSize);
+        colFurni.offset = new Vector2((GetFurniData().width - 1) * GameGlobal.tileSize / 2, 
+            (GetFurniData().height - 1) * GameGlobal.tileSize / 2);
     }
 
     private FurnitureExcelItem GetFurniData()
