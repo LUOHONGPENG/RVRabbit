@@ -10,8 +10,12 @@ public partial class GameMgr : MonoSingleton<GameMgr>
 
     public void Start()
     {
+        //Excel Data
         furnitureData = ExcelManager.Instance.GetExcelData<FurnitureExcelData, FurnitureExcelItem>();
         Debug.Log(furnitureData.GetExcelItem(1001).width);
+
+        StartCoroutine(InputMgr.Instance.IE_Init());
+
         roomMgr.Init();
     }
 }
