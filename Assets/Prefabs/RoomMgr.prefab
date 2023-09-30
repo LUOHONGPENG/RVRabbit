@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5386266684614185714}
   m_Layer: 0
-  m_Name: tfItem
+  m_Name: tfFurni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,5 +142,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tfFloor: {fileID: 4187677669529709532}
   pfFloor: {fileID: 805292519756799006, guid: 8cf8c9f8c2b28e04d852fd218bec9d5a, type: 3}
-  tfItem: {fileID: 5386266684614185714}
-  pfItem: {fileID: 0}
+  tfFurni: {fileID: 5386266684614185714}
+  pfFurni: {fileID: 7171519586607705741, guid: f2688267341dd914d8c4b675984a1971, type: 3}
