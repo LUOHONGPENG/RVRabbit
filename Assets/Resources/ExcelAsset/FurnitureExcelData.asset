@@ -18,6 +18,8 @@ MonoBehaviour:
     desc: 
     height: 2
     width: 1
+    xoffset: 0
+    yoffset: 0
     canBuy: 1
     iconUrl: spBed
   - id: 1002
@@ -25,6 +27,8 @@ MonoBehaviour:
     desc: 
     height: 1
     width: 1
+    xoffset: 0
+    yoffset: 0.2
     canBuy: 1
     iconUrl: spPC
   - id: 2001
@@ -32,5 +36,7 @@ MonoBehaviour:
     desc: 
     height: 1
     width: 1
+    xoffset: 0
+    yoffset: 0
     canBuy: 1
     iconUrl: 

@@ -12,6 +12,8 @@ public partial class FurnitureExcelItem : ExcelItemBase
 	public string desc;
 	public int height;
 	public int width;
+	public float xoffset;
+	public float yoffset;
 	public bool canBuy;
 	public string iconUrl;
 }
@@ -38,6 +40,8 @@ public class FurnitureAssetAssignment
 			items[i].desc = allItemValueRowList[i]["desc"];
 			items[i].height = Convert.ToInt32(allItemValueRowList[i]["height"]);
 			items[i].width = Convert.ToInt32(allItemValueRowList[i]["width"]);
+			items[i].xoffset = Convert.ToSingle(allItemValueRowList[i]["xoffset"]);
+			items[i].yoffset = Convert.ToSingle(allItemValueRowList[i]["yoffset"]);
 			items[i].canBuy = Convert.ToBoolean(allItemValueRowList[i]["canBuy"]);
 			items[i].iconUrl = allItemValueRowList[i]["iconUrl"];
 		}

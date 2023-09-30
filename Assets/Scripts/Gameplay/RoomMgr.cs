@@ -18,12 +18,16 @@ public class RoomMgr : MonoBehaviour
     public void Init()
     {
         ResetRoomView();
+
+        PublicTool.ClearChildItem(tfFurni);
+        CreateFurniture(1001, new Vector2Int(0, 0));
+        CreateFurniture(1002, new Vector2Int(1, 0));
     }
 
 
     public void ResetRoomView()
     {
-        //Clear Floor
+        //Clear and Reset Floor
         PublicTool.ClearChildItem(tfFloor);
         listFloorView.Clear();
         for (int i = 0; i < roomHeight; i++)
@@ -39,6 +43,13 @@ public class RoomMgr : MonoBehaviour
         }
     }
 
+    public void CreateFurniture(int ID,Vector2Int pos)
+    {
+        GameObject objFurni = GameObject.Instantiate(pfFurni, tfFurni);
+        RoomFurniItem itemFurni = objFurni.GetComponent<RoomFurniItem>();
+        objFurni.transform.localPosition = new Vector2(pos.x * GameGlobal.tileSize, pos.y * GameGlobal.tileSize);
+        itemFurni.Init(ID);
+    }
 
 
 }
