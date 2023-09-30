@@ -12,8 +12,8 @@ public class RoomMgr : MonoBehaviour
     public GameObject pfFloor;
     private List<RoomFloorItem> listFloorView = new List<RoomFloorItem>();
     [Header("RoomItemView")]
-    public Transform tfItem;
-    public GameObject pfItem;
+    public Transform tfFurni;
+    public GameObject pfFurni;
 
     public void Init()
     {
