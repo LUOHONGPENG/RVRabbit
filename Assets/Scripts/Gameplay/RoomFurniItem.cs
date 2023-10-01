@@ -78,7 +78,7 @@ public class RoomFurniItem : MonoBehaviour
                 this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
             }
             spFurni.sortingOrder = 99;
-            spFurni.DOFade(0.5F, 0);
+            spFurni.DOFade(0.75F, 0);
         }
     }
 

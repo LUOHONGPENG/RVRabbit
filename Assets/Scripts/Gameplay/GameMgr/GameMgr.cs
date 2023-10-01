@@ -49,11 +49,58 @@ public partial class GameMgr : MonoSingleton<GameMgr>
 
 
         CheckExtraEffect(typeID);
+        if (countTask >= 50 || countSin>=10)
+        {
+            InvokeEnding();
+            yield break ;
+        }
         interactType = InteractType.Action;
     }
 
     public void CheckExtraEffect(int typeID)
     {
+        switch (typeID)
+        {
+            case 2004:
+                countSin += 2;
+                countKnife++;
+                break;
+            case 9001:
+                countSin += 1;
+                countSex++;
+                break;
+            case 9002:
+                countSin += 5;
+                countSacrifice++;
+                break;
+        }
+    }
+
+    public void InvokeEnding()
+    {
+        if (countSin >= 10)
+        {
+            EventCenter.Instance.EventTrigger("Ending", 0);
+
+            //You are arrested.
+        }
+        else if (countSacrifice > 0)
+        {
+            EventCenter.Instance.EventTrigger("Ending", 1);
+
+        }
+        else if (countSex > 0)
+        {
+            EventCenter.Instance.EventTrigger("Ending", 2);
+        }
+        else if (countKnife > 0)
+        {
+            EventCenter.Instance.EventTrigger("Ending", 3);
+        }
+        else
+        {
+            EventCenter.Instance.EventTrigger("Ending", 4);
+        }
 
     }
 }

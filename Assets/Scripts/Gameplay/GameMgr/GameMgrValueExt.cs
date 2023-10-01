@@ -4,11 +4,16 @@ using UnityEngine;
 
 public partial class GameMgr
 {
-    public int countCoin = 0;
+    public int countCoin = 10;
     public int countTask = 0;
     public int countEnergy = 10;
     public int maxEnergy = 10;
     public int countTime = 0;
+
+    public int countSin = 0;
+    public int countSex = 0;
+    public int countKnife = 0;
+    public int countSacrifice = 0;
 
     public void ChangeEnergy(int delta)
     {

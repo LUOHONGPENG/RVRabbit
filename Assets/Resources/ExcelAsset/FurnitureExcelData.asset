@@ -19,7 +19,7 @@ MonoBehaviour:
     desc: Can rest to restore energy.
     height: 2
     width: 1
-    coinDelta: -3
+    coinDelta: -2
     energyDelta: 10
     specialDelta: 0
     timeDelta: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     desc: Sell icecream to guest.
     height: 1
     width: 2
-    coinDelta: 4
+    coinDelta: 5
     energyDelta: -2
     specialDelta: 0
     timeDelta: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     yoffset: 0.4
     canBuy: 1
     canSell: 1
-    price: 20
+    price: 10
     iconUrl: spIceCream
   - id: 2001
     name: Coffee
@@ -111,7 +111,7 @@ MonoBehaviour:
     yoffset: 0.2
     canBuy: 1
     canSell: 1
-    price: 20
+    price: 10
     iconUrl: spLoveLamp
   - id: 2003
     name: Rope
@@ -139,7 +139,7 @@ MonoBehaviour:
     desc: Threat the consumers to give money.
     height: 1
     width: 1
-    coinDelta: 5
+    coinDelta: 10
     energyDelta: -1
     specialDelta: 0
     timeDelta: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
     yoffset: 0
     canBuy: 1
     canSell: 1
-    price: 20
+    price: 10
     iconUrl: spKnife
   - id: 2005
     name: Old Book
@@ -171,7 +171,7 @@ MonoBehaviour:
     yoffset: 0
     canBuy: 1
     canSell: 0
-    price: 20
+    price: 15
     iconUrl: spMagicBook
   - id: 9001
     name: Horny Bed
@@ -179,8 +179,8 @@ MonoBehaviour:
     desc: Give sex service to consumers.
     height: 2
     width: 1
-    coinDelta: 10
-    energyDelta: -1
+    coinDelta: 15
+    energyDelta: -3
     specialDelta: 0
     timeDelta: 0
     supportFurni1: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
     height: 1
     width: 1
     coinDelta: 50
-    energyDelta: -5
+    energyDelta: -3
     specialDelta: 0
     timeDelta: 0
     supportFurni1: 0

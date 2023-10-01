@@ -80,7 +80,7 @@ public class UIMgr : MonoBehaviour
     {
         codeCoin.text = GameMgr.Instance.countCoin.ToString();
         codeEnergy.text = string.Format("{0}/{1}", GameMgr.Instance.countEnergy, GameMgr.Instance.maxEnergy);
-        codeTask.text = string.Format("{0}/{1}", GameMgr.Instance.countTask, 100);
+        codeTask.text = string.Format("{0}/{1}", GameMgr.Instance.countTask, GameGlobal.gameProgress);
 
         switch (GameMgr.Instance.interactType)
         {
