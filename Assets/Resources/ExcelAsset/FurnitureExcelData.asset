@@ -19,7 +19,7 @@ MonoBehaviour:
     desc: Can rest to restore energy.
     height: 2
     width: 1
-    coinDelta: -5
+    coinDelta: -3
     energyDelta: 10
     specialDelta: 0
     timeDelta: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     desc: Sell icecream to guest.
     height: 1
     width: 2
-    coinDelta: 3
+    coinDelta: 4
     energyDelta: -2
     specialDelta: 0
     timeDelta: 0

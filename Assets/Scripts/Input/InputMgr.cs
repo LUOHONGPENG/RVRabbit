@@ -195,6 +195,7 @@ public partial class InputMgr : MonoSingleton<InputMgr>
     {
         if (!isDragging)
         {
+
             RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Furniture"));
 
             if (hit.transform == null)
@@ -205,19 +206,16 @@ public partial class InputMgr : MonoSingleton<InputMgr>
 
             if (hit.transform.parent.GetComponent<RoomFurniItem>() != null)
             {
-                isDragging = true;
-                Debug.Log("StartDragFurni");
                 RoomFurniItem havorFurni = hit.transform.parent.GetComponent<RoomFurniItem>();
                 FurnitureExcelItem furniExcel = havorFurni.GetFurniData();
 
-                ShowTipStruct showTipInfo = new ShowTipStruct(furniExcel.name, havorFurni.Level, furniExcel.desc, furniExcel.furnitureType.ToString(), havorFurni.CoinChange, havorFurni.EnergyChange, havorFurni.TaskChange);
+                ShowTipStruct showTipInfo = new ShowTipStruct(furniExcel.name, havorFurni.Level, furniExcel.desc, furniExcel.furnitureType.ToString(),
+                    havorFurni.CoinChange, havorFurni.EnergyChange, havorFurni.TaskChange, furniExcel.GetSupportEffectDesc, GetMousePos());
 
                 EventCenter.Instance.EventTrigger("ShowTip", showTipInfo);
-
             }
-
-
         }
+
     }
 
     #endregion

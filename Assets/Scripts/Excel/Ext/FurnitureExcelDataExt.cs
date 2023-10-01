@@ -20,4 +20,45 @@ public partial class FurnitureExcelItem
         }
     }
 
+    public string GetSupportEffectDesc
+    {
+        get
+        {
+            string tempDesc = "";
+
+            if (supportFurni1 != FurniType.None)
+            {
+                tempDesc += supportFurni1.ToString();
+                if (supportDelta1 > 0)
+                {
+                    tempDesc += "+" + supportDelta1.ToString();
+
+                }
+                else
+                {
+                    tempDesc += supportDelta1.ToString();
+                }
+            }
+            tempDesc += " ";
+
+
+            if (supportFurni2 != FurniType.None)
+            {
+                tempDesc += supportFurni2.ToString();
+                if (supportDelta2 > 0)
+                {
+                    tempDesc += "+" + supportDelta2.ToString();
+
+                }
+                else
+                {
+                    tempDesc += supportDelta2.ToString();
+                }
+            }
+
+            return tempDesc;
+
+        }
+    }
+
 }
