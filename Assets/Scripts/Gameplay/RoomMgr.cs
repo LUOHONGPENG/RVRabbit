@@ -10,7 +10,12 @@ public class RoomMgr : MonoBehaviour
     //Data
     private int roomWidth = 3;
     private int roomHeight = 3;
-    [Header("RoomTileView")]
+
+    [Header("RoomWallView")]
+    public Transform tfWall;
+    public GameObject pfWall;
+
+    [Header("RoomFloorView")]
     public Transform tfFloor;
     public GameObject pfFloor;
     private List<RoomFloorItem> listFloorView = new List<RoomFloorItem>();
@@ -22,7 +27,6 @@ public class RoomMgr : MonoBehaviour
     public Dictionary<Vector2Int, int> dicFurniOccupy = new Dictionary<Vector2Int, int>();
 
     private int furniKey = 0;
-
 
     public void Init()
     {
@@ -141,9 +145,27 @@ public class RoomMgr : MonoBehaviour
                 itemFloor.transform.localPosition = new Vector2(i * GameGlobal.tileSize, j * GameGlobal.tileSize);
             }
         }
+
+        //Clear and Reset Wall
+        PublicTool.ClearChildItem(tfWall);
+
+        for (int i = 0; i < roomWidth; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                GameObject objWall = GameObject.Instantiate(pfWall, tfWall);
+                RoomWallItem itemWall = objWall.GetComponent<RoomWallItem>();
+                itemWall.Init(new Vector2Int(i, j));
+                //Position
+                itemWall.transform.localPosition = new Vector2(i * GameGlobal.tileSize, (j+3) * GameGlobal.tileSize);
+            }
+        }
     }
     #endregion
 
+
+
+    #region Furniture Generate
     public void InitFurniture()
     {
         PublicTool.ClearChildItem(tfFurni);
@@ -208,6 +230,8 @@ public class RoomMgr : MonoBehaviour
         }
         return listNearby;
     }
+
+    #endregion
 
     #region FinishCalculation
 

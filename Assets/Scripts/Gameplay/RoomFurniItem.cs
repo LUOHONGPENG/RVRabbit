@@ -164,6 +164,11 @@ public class RoomFurniItem : MonoBehaviour
     public void ClickDeal()
     {
         FurnitureExcelItem furniItem = GetFurniData();
+        if (furniItem.energyDelta < 0 && GameMgr.Instance.countEnergy + furniItem.energyDelta < 0)
+        {
+            return;
+        }
+
         float levelDelta = 1f;
         if (Level > 0)
         {
