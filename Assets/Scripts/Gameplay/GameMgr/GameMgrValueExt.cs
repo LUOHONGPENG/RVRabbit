@@ -22,7 +22,6 @@ public partial class GameMgr
         }
     }
 
-    public InteractType interactType = InteractType.Move;
 
 }
 

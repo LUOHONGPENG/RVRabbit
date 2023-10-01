@@ -164,6 +164,12 @@ public class RoomFurniItem : MonoBehaviour
     public void ClickDeal()
     {
         FurnitureExcelItem furniItem = GetFurniData();
+        if (furniItem.furnitureType== FurniType.Other || furniItem.furnitureType == FurniType.Service)
+        {
+            return;
+        }
+
+
         if (EnergyChange < 0 && GameMgr.Instance.countEnergy + EnergyChange < 0)
         {
             return;
@@ -172,7 +178,11 @@ public class RoomFurniItem : MonoBehaviour
         GameMgr.Instance.countCoin += CoinChange;
         GameMgr.Instance.countTask += TaskChange;
         GameMgr.Instance.ChangeEnergy(EnergyChange);
+
+        GameMgr.Instance.InvokeAction(furniItem.id);
     }
+
+
 
     public float LevelDelta
     {

@@ -18,6 +18,28 @@ public partial class GameMgr : MonoSingleton<GameMgr>
 
         uiMgr.Init();
     }
+
+    public InteractType interactType = InteractType.Move;
+
+
+    public void InvokeAction(int typeID)
+    {
+        StartCoroutine(IE_Action(typeID));
+        //Check End
+    }
+
+    public IEnumerator IE_Action(int typeID)
+    {
+        interactType = InteractType.Wait;
+        yield return new WaitForSeconds(2f);
+        CheckExtraEffect(typeID);
+        interactType = InteractType.Action;
+    }
+
+    public void CheckExtraEffect(int typeID)
+    {
+
+    }
 }
 
 

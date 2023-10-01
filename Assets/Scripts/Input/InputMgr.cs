@@ -215,6 +215,11 @@ public partial class InputMgr : MonoSingleton<InputMgr>
                 EventCenter.Instance.EventTrigger("ShowTip", showTipInfo);
             }
         }
+        else
+        {
+            EventCenter.Instance.EventTrigger("HideTip", null);
+
+        }
 
     }
 

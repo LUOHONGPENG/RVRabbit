@@ -11,6 +11,11 @@ public class RoomMgr : MonoBehaviour
     private int roomWidth = 3;
     private int roomHeight = 3;
 
+    [Header("Character")]
+
+    public Animator aniRabbit;
+
+
     [Header("RoomWallView")]
     public Transform tfWall;
     public GameObject pfWall;
@@ -162,6 +167,8 @@ public class RoomMgr : MonoBehaviour
                 itemWall.transform.localPosition = new Vector2(i * GameGlobal.tileSize, (j+3) * GameGlobal.tileSize);
             }
         }
+
+        tfTail.localPosition = new Vector2(2.59f + (roomWidth - 2) * GameGlobal.tileSize, 1.92f);
     }
     #endregion
 
@@ -246,7 +253,7 @@ public class RoomMgr : MonoBehaviour
                 List<int> listNearby = GetNearByFurniture(furni.GetKeyID());
                 List<int> listNearbyTypeOriginID = new List<int>();
                 //Level
-                int tempLevel = 0;
+                int tempLevel;
                 for(int i = 0; i < listNearby.Count; i++)
                 {
                     int checkFurniKey = listNearby[i];
@@ -255,10 +262,8 @@ public class RoomMgr : MonoBehaviour
                         //Level
                         RoomFurniItem checkFurni = dicFurniView[checkFurniKey];
                         listNearbyTypeOriginID.Add(checkFurni.GetOriginalID());
-                        tempLevel += checkFurni.GetFurniData().GetSupportEffect(furni.GetFurniData().furnitureType);
                     }
                 }
-                furni.Level = tempLevel;
                 //CheckTransformCondition
 
                 foreach(ComboExcelItem item in GameMgr.Instance.comboData.items)
@@ -283,6 +288,21 @@ public class RoomMgr : MonoBehaviour
                         }
                     }
                 }
+
+                //Level
+                tempLevel = 0;
+                for (int i = 0; i < listNearby.Count; i++)
+                {
+                    int checkFurniKey = listNearby[i];
+                    if (dicFurniView.ContainsKey(checkFurniKey))
+                    {
+                        //Level
+                        RoomFurniItem checkFurni = dicFurniView[checkFurniKey];
+                        tempLevel += checkFurni.GetFurniData().GetSupportEffect(furni.GetFurniData().furnitureType);
+                    }
+                }
+                furni.Level = tempLevel;
+                //CheckTransformCondition
             }
             else
             {
