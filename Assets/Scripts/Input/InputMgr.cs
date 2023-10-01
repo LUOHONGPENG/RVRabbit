@@ -189,6 +189,41 @@ public partial class InputMgr : MonoSingleton<InputMgr>
 
     #endregion
 
+    #region Havor
+
+    private void CheckHavor()
+    {
+        if (!isDragging)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Furniture"));
+
+            if (hit.transform == null)
+            {
+                EventCenter.Instance.EventTrigger("HideTip", null);
+                return;
+            }
+
+            if (hit.transform.parent.GetComponent<RoomFurniItem>() != null)
+            {
+                isDragging = true;
+                Debug.Log("StartDragFurni");
+                RoomFurniItem havorFurni = hit.transform.parent.GetComponent<RoomFurniItem>();
+                FurnitureExcelItem furniExcel = havorFurni.GetFurniData();
+
+                ShowTipStruct showTipInfo = new ShowTipStruct(furniExcel.name, havorFurni.Level, furniExcel.desc, furniExcel.furnitureType.ToString(), havorFurni.CoinChange, havorFurni.EnergyChange, havorFurni.TaskChange);
+
+                EventCenter.Instance.EventTrigger("ShowTip", showTipInfo);
+
+            }
+
+
+        }
+    }
+
+    #endregion
+
+
+
     #region Click
 
     private void ClickAction()
@@ -219,6 +254,7 @@ public partial class InputMgr : MonoSingleton<InputMgr>
         if (isInitInput)
         {
             CheckRayDrag();
+            CheckHavor();
         }
     }
 }

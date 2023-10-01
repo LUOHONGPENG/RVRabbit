@@ -15,6 +15,8 @@ public class RoomMgr : MonoBehaviour
     public Transform tfWall;
     public GameObject pfWall;
 
+    public Transform tfTail;
+
     [Header("RoomFloorView")]
     public Transform tfFloor;
     public GameObject pfFloor;

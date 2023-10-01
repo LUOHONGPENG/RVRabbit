@@ -164,39 +164,84 @@ public class RoomFurniItem : MonoBehaviour
     public void ClickDeal()
     {
         FurnitureExcelItem furniItem = GetFurniData();
-        if (furniItem.energyDelta < 0 && GameMgr.Instance.countEnergy + furniItem.energyDelta < 0)
+        if (EnergyChange < 0 && GameMgr.Instance.countEnergy + EnergyChange < 0)
         {
             return;
         }
 
-        float levelDelta = 1f;
-        if (Level > 0)
-        {
-            levelDelta = GameGlobal.levelAdd[Level - 1];
-        }
-        else if(Level < 0)
-        {
-            levelDelta = GameGlobal.levelSub[-Level-1];
-        }
-        switch (GetFurniData().furnitureType)
-        {
-            case FurniType.Rest:
-                GameMgr.Instance.countCoin += furniItem.coinDelta;
-                GameMgr.Instance.ChangeEnergy(Mathf.RoundToInt(furniItem.energyDelta * levelDelta));
-                GameMgr.Instance.countTime += furniItem.timeDelta;
-                break;
-            case FurniType.Service:
-                GameMgr.Instance.countCoin += Mathf.RoundToInt(furniItem.coinDelta * levelDelta);
-                GameMgr.Instance.ChangeEnergy(furniItem.energyDelta);
-                GameMgr.Instance.countTime += furniItem.timeDelta;
-                break;
-            case FurniType.Work:
-                GameMgr.Instance.countCoin += furniItem.coinDelta;
-                GameMgr.Instance.countTask += Mathf.RoundToInt(furniItem.specialDelta * levelDelta); 
-                GameMgr.Instance.ChangeEnergy(furniItem.energyDelta);
-                GameMgr.Instance.countTime += furniItem.timeDelta;
-                break;
+        GameMgr.Instance.countCoin += CoinChange;
+        GameMgr.Instance.countTask += TaskChange;
+        GameMgr.Instance.ChangeEnergy(EnergyChange);
+    }
 
+    public float LevelDelta
+    {
+        get
+        {
+            float levelDelta = 1f;
+            if (Level > 0)
+            {
+                levelDelta = GameGlobal.levelAdd[Level - 1];
+            }
+            else if (Level < 0)
+            {
+                levelDelta = GameGlobal.levelSub[-Level - 1];
+            }
+            return levelDelta;
+        }
+    }
+
+
+    public int CoinChange
+    {
+        get
+        {
+            FurnitureExcelItem furniItem = GetFurniData();
+            switch (GetFurniData().furnitureType)
+            {
+                case FurniType.Rest:
+                    return furniItem.coinDelta;
+                case FurniType.Service:
+                    return Mathf.RoundToInt(furniItem.coinDelta * LevelDelta);
+                case FurniType.Work:
+                    return furniItem.coinDelta;
+            }
+            return 0;
+        }
+    }
+
+    public int EnergyChange
+    {
+        get
+        {
+            FurnitureExcelItem furniItem = GetFurniData();
+            switch (GetFurniData().furnitureType)
+            {
+                case FurniType.Rest:
+                    return Mathf.RoundToInt(furniItem.energyDelta * LevelDelta);
+                case FurniType.Service:
+                    return furniItem.energyDelta;
+                case FurniType.Work:
+                    return furniItem.energyDelta;
+            }
+            return 0;
+        }
+    }
+    public int TaskChange
+    {
+        get
+        {
+            FurnitureExcelItem furniItem = GetFurniData();
+            switch (GetFurniData().furnitureType)
+            {
+                case FurniType.Rest:
+                    return Mathf.RoundToInt(furniItem.specialDelta * LevelDelta);
+                case FurniType.Service:
+                    return furniItem.specialDelta;
+                case FurniType.Work:
+                    return Mathf.RoundToInt(furniItem.specialDelta * LevelDelta);
+            }
+            return 0;
         }
     }
 

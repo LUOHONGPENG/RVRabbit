@@ -514,6 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tfWall: {fileID: 7544878951808366619}
   pfWall: {fileID: 1764082799333290682, guid: 23c550a634b01294db4dda0ec744820f, type: 3}
+  tfTail: {fileID: 7334602887319518587}
   tfFloor: {fileID: 4187677669529709532}
   pfFloor: {fileID: 805292519756799006, guid: 8cf8c9f8c2b28e04d852fd218bec9d5a, type: 3}
   tfFurni: {fileID: 5386266684614185714}

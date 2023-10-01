@@ -11,6 +11,7 @@ public class UIMgr : MonoBehaviour
     public Text codeTask;
     public Text codeTime;
 
+    public UITipMgr uiTipMgr;
 
     [Header("MoveFurniture")]
     public Button btnMoveFurni;
@@ -36,6 +37,8 @@ public class UIMgr : MonoBehaviour
                     break;
             }
         });
+
+        uiTipMgr.Init();
     }
 
     private void Update()
