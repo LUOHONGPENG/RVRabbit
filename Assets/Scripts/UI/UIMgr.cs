@@ -53,8 +53,6 @@ public class UIMgr : MonoBehaviour
         codeCoin.text = GameMgr.Instance.countCoin.ToString();
         codeEnergy.text = string.Format("{0}/{1}", GameMgr.Instance.countEnergy, GameMgr.Instance.maxEnergy);
         codeTask.text = string.Format("{0}/{1}", GameMgr.Instance.countTask, 100);
-        codeTime.text = string.Format("{0}/{1}", GameMgr.Instance.countTime, 40);
-
 
         switch (GameMgr.Instance.interactType)
         {
