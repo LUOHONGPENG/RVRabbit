@@ -83,6 +83,7 @@ public partial class InputMgr : MonoSingleton<InputMgr>
         switch (GameMgr.Instance.interactType)
         {
             case InteractType.Move:
+            case InteractType.Shop:
                 StartDrag();
                 break;
             case InteractType.Action:
@@ -102,6 +103,7 @@ public partial class InputMgr : MonoSingleton<InputMgr>
         switch (GameMgr.Instance.interactType)
         {
             case InteractType.Move:
+            case InteractType.Shop:
                 EndDrag();
                 break;
         }

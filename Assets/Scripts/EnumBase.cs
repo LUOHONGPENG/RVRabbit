@@ -6,7 +6,8 @@ public enum InteractType
 {
     Move,
     Action,
-    Wait
+    Wait,
+    Shop
 }
 
 public enum ComsumerType

@@ -207,14 +207,14 @@ public class RoomMgr : MonoBehaviour
         PublicTool.ClearChildItem(tfFurni);
         listFurniView.Clear();
         dicFurniView.Clear();
-        CreateFurniture(1001, new Vector2Int(0, 0));
-        CreateFurniture(1002, new Vector2Int(1, 0));
-        CreateFurniture(1003, new Vector2Int(0, 2));
-        CreateFurniture(2001, new Vector2Int(1, 1));
-        CreateFurniture(2002, new Vector2Int(-2, -2));
-        CreateFurniture(2003, new Vector2Int(-2, -2));
-        CreateFurniture(2004, new Vector2Int(-2, -2));
-        CreateFurniture(2005, new Vector2Int(-2, -2));
+        CreateFurniture(1001, new Vector2Int(-2, -2));
+        CreateFurniture(1002, new Vector2Int(-1, -1));
+        CreateFurniture(1003, new Vector2Int(0, -1));
+        CreateFurniture(2001, new Vector2Int(3, -1));
+        //CreateFurniture(2002, new Vector2Int(-2, -2));
+        //CreateFurniture(2003, new Vector2Int(-2, -2));
+        //CreateFurniture(2004, new Vector2Int(-2, -2));
+        //CreateFurniture(2005, new Vector2Int(-2, -2));
 
         //CreateFurniture(2003, new Vector2Int(2, 0));
 
@@ -268,6 +268,19 @@ public class RoomMgr : MonoBehaviour
     }
 
     #endregion
+
+    public List<int> GetExistItemID()
+    {
+        List<int> listExist = new List<int>();
+
+        foreach(RoomFurniItem furni in listFurniView)
+        {
+            listExist.Add(furni.GetOriginalID());
+        }
+
+        return listExist;
+    }
+
 
     #region FinishCalculation
 
