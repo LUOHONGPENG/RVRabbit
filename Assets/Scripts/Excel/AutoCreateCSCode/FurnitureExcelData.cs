@@ -15,12 +15,11 @@ public partial class FurnitureExcelItem : ExcelItemBase
 	public int width;
 	public int coinDelta;
 	public int energyDelta;
+	public int specialDelta;
 	public int timeDelta;
 	public FurniType supportFurni1;
-	public SupportValueType supportValue1;
 	public int supportDelta1;
 	public FurniType supportFurni2;
-	public SupportValueType supportValue2;
 	public int supportDelta2;
 	public float xoffset;
 	public float yoffset;
@@ -54,12 +53,11 @@ public class FurnitureAssetAssignment
 			items[i].width = Convert.ToInt32(allItemValueRowList[i]["width"]);
 			items[i].coinDelta = Convert.ToInt32(allItemValueRowList[i]["coinDelta"]);
 			items[i].energyDelta = Convert.ToInt32(allItemValueRowList[i]["energyDelta"]);
+			items[i].specialDelta = Convert.ToInt32(allItemValueRowList[i]["specialDelta"]);
 			items[i].timeDelta = Convert.ToInt32(allItemValueRowList[i]["timeDelta"]);
 			items[i].supportFurni1 = (FurniType) Enum.Parse(typeof(FurniType), allItemValueRowList[i]["supportFurni1"], true);
-			items[i].supportValue1 = (SupportValueType) Enum.Parse(typeof(SupportValueType), allItemValueRowList[i]["supportValue1"], true);
 			items[i].supportDelta1 = Convert.ToInt32(allItemValueRowList[i]["supportDelta1"]);
 			items[i].supportFurni2 = (FurniType) Enum.Parse(typeof(FurniType), allItemValueRowList[i]["supportFurni2"], true);
-			items[i].supportValue2 = (SupportValueType) Enum.Parse(typeof(SupportValueType), allItemValueRowList[i]["supportValue2"], true);
 			items[i].supportDelta2 = Convert.ToInt32(allItemValueRowList[i]["supportDelta2"]);
 			items[i].xoffset = Convert.ToSingle(allItemValueRowList[i]["xoffset"]);
 			items[i].yoffset = Convert.ToSingle(allItemValueRowList[i]["yoffset"]);

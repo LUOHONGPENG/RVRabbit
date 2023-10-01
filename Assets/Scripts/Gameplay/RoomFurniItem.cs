@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
+using DG.Tweening;
 
 public class RoomFurniItem : MonoBehaviour
 {
@@ -57,22 +58,25 @@ public class RoomFurniItem : MonoBehaviour
         {
             this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
             spFurni.sortingOrder = 99 - posID.y;
+            spFurni.DOFade(1, 0);
         }
         else
         {
             spFurni.sortingOrder = 99;
+            spFurni.DOFade(0.5F, 0);
         }
     }
 
     public void BackPos()
     {
-        if (posID.x >= 0 && posID.y >= 0)
+        if (CheckValid())
         {
             this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
         }
         else
         {
-            this.transform.localPosition = new Vector2(-1 + Random.Range(-1f,0.5f), -1 + Random.Range(-1f, 0.5f));
+            this.transform.DOLocalMove(new Vector2(-1 + Random.Range(-1f, 0.5f), -1 + Random.Range(-1f, 0.5f)), 0.5F);
+            //this.transform.localPosition = new Vector2(-1 + Random.Range(-1f,0.5f), -1 + Random.Range(-1f, 0.5f));
         }
     }
 
