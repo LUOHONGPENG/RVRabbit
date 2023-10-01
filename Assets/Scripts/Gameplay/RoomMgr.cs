@@ -16,6 +16,7 @@ public class RoomMgr : MonoBehaviour
     public Transform tfFurni;
     public GameObject pfFurni;
     private List<RoomFurniItem> listFurniView = new List<RoomFurniItem>();
+    public Dictionary<int, RoomFurniItem> dicFurniView = new Dictionary<int, RoomFurniItem>();
     public Dictionary<Vector2Int, int> dicFurniOccupy = new Dictionary<Vector2Int, int>();
 
     private int furniKey = 0;
@@ -137,6 +138,7 @@ public class RoomMgr : MonoBehaviour
     {
         PublicTool.ClearChildItem(tfFurni);
         listFurniView.Clear();
+        dicFurniView.Clear();
         CreateFurniture(1001, new Vector2Int(0, 0));
         CreateFurniture(1002, new Vector2Int(1, 0));
         CreateFurniture(1003, new Vector2Int(0, 2));
@@ -146,7 +148,6 @@ public class RoomMgr : MonoBehaviour
 
     }
 
-
     public void CreateFurniture(int typeID,Vector2Int posID)
     {
         GameObject objFurni = GameObject.Instantiate(pfFurni, tfFurni);
@@ -155,9 +156,46 @@ public class RoomMgr : MonoBehaviour
         furniKey++;
         itemFurni.SetPosID(posID);
         listFurniView.Add(itemFurni);
-
+        dicFurniView.Add(itemFurni.GetKeyID(), itemFurni);
         RefreshRoomOccupy();
     }
 
+    public List<int> GetNearByFurniture(int targetKey)
+    {
+        List<int> listNearby = new List<int>();
 
+        if (!dicFurniView.ContainsKey(targetKey))
+        {
+            return listNearby;
+        }
+        RoomFurniItem furniItem = dicFurniView[targetKey];
+        if (!furniItem.CheckValid())
+        {
+            return listNearby;
+        }
+
+        List<Vector2Int> listTargetOccupy = furniItem.GetOccupyList();
+        for(int i = 0; i < listTargetOccupy.Count; i++)
+        {
+            Vector2Int pos = listTargetOccupy[i];
+            List<Vector2Int> listCheck = new List<Vector2Int>();
+            listCheck.Add(pos + new Vector2Int(0, 1));
+            listCheck.Add(pos + new Vector2Int(0, -1));
+            listCheck.Add(pos + new Vector2Int(1, 0));
+            listCheck.Add(pos + new Vector2Int(-1, 0));
+            for(int j = 0;i < listCheck.Count; j++)
+            {
+                if (dicFurniOccupy.ContainsKey(listCheck[j]) && !listNearby.Contains(dicFurniOccupy[listCheck[j]]))
+                {
+                    listNearby.Add(dicFurniOccupy[listCheck[j]]);
+                }
+            }
+        }
+        return listNearby;
+    }
+
+    #region Calculation
+
+
+    #endregion
 }

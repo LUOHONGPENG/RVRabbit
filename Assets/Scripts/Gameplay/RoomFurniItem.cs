@@ -72,7 +72,7 @@ public class RoomFurniItem : MonoBehaviour
         }
         else
         {
-            this.transform.localPosition = new Vector2(-1, -1);
+            this.transform.localPosition = new Vector2(-1 + Random.Range(-1f,0.5f), -1 + Random.Range(-1f, 0.5f));
         }
     }
 
@@ -82,9 +82,35 @@ public class RoomFurniItem : MonoBehaviour
         return posID;
     }
 
+    public bool CheckValid()
+    {
+        if (posID.x >= 0 && posID.y >= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public Vector2Int GetSize()
     {
         return new(GetFurniData().width, GetFurniData().height);
+    }
+
+    public List<Vector2Int> GetOccupyList()
+    {
+        List<Vector2Int> listOccupy = new List<Vector2Int>();
+        for(int i = 0; i < GetSize().x; i++)
+        {
+            for(int j = 0; j < GetSize().y; j++)
+            {
+                Vector2Int key = new Vector2Int(i, j);
+                listOccupy.Add(GetPosID() + key);
+            }
+        }
+        return listOccupy;
     }
 
     #endregion
