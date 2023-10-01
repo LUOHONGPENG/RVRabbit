@@ -86,7 +86,7 @@ public class UIMgr : MonoBehaviour
         {
             case InteractType.Move:
                 txMoveFurni.text = "Finish Move";
-                txShop.text = "Shop";
+                txShop.text = "Shop&Move Furniture";
                 btnMoveFurni.interactable = true;
                 btnShop.interactable = false;
                 txMoveTip.gameObject.SetActive(true);
@@ -94,7 +94,7 @@ public class UIMgr : MonoBehaviour
                 break;
             case InteractType.Action:
                 txMoveFurni.text = "Move Furniture";
-                txShop.text = "Shop";
+                txShop.text = "Shop&Move Furniture";
                 btnMoveFurni.interactable = true;
                 btnShop.interactable = true;
                 txMoveTip.gameObject.SetActive(false);
@@ -102,7 +102,7 @@ public class UIMgr : MonoBehaviour
                 break;
             case InteractType.Wait:
                 txMoveFurni.text = "Move Furniture";
-                txShop.text = "Shop";
+                txShop.text = "Shop&Move Furniture";
                 btnMoveFurni.interactable = false;
                 btnShop.interactable = false;
                 txMoveTip.gameObject.SetActive(false);
@@ -110,7 +110,7 @@ public class UIMgr : MonoBehaviour
                 break;
             case InteractType.Shop:
                 txMoveFurni.text = "Move Furniture";
-                txShop.text = "Back";
+                txShop.text = "Finish";
                 btnMoveFurni.interactable = false;
                 btnShop.interactable = true;
                 txMoveTip.gameObject.SetActive(false);

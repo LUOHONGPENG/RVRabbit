@@ -821,7 +821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2419679168248236944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1219,7 +1219,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click to buy new furniture.
+  m_Text: 'Drag to relocate furniture.
+
+    Click to buy new furniture.'
 --- !u!114 &4951612966490756674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1528,6 +1530,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5540020354526441180, guid: c2c86caefa23b844691032f464012bef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8320009262151982555, guid: c2c86caefa23b844691032f464012bef, type: 3}
       propertyPath: m_Name
       value: ShopMgr
@@ -1673,6 +1679,10 @@ PrefabInstance:
     - target: {fileID: 389645357301474300, guid: a8b1f88ea5736754980c71e8f6de3c25, type: 3}
       propertyPath: m_Name
       value: EndMgr
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905739112717388675, guid: a8b1f88ea5736754980c71e8f6de3c25, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8230529940608956834, guid: a8b1f88ea5736754980c71e8f6de3c25, type: 3}
       propertyPath: m_Pivot.x

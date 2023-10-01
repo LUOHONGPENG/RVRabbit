@@ -7,7 +7,7 @@ public partial class GameMgr : MonoSingleton<GameMgr>
     public Camera mapCamera;
     public RoomMgr roomMgr;
     public UIMgr uiMgr;
-
+    public SoundMgr soundMgr;
     public void Start()
     {
         InitExcel();
@@ -17,9 +17,14 @@ public partial class GameMgr : MonoSingleton<GameMgr>
         roomMgr.Init();
 
         uiMgr.Init();
+        soundMgr.Init();
+
+        countCoin = 10;
+        countEnergy = 10;
+        interactType = InteractType.Shop;
     }
 
-    public InteractType interactType = InteractType.Move;
+    public InteractType interactType = InteractType.Shop;
     public ComsumerType consumerType = ComsumerType.None;
 
     public void InvokeAction(int typeID)
@@ -31,19 +36,36 @@ public partial class GameMgr : MonoSingleton<GameMgr>
     public IEnumerator IE_Action(int typeID)
     {
         interactType = InteractType.Wait;
+        CheckSound(typeID);
         yield return new WaitForSeconds(0.5f);
         roomMgr.HideCharacter();
         yield return new WaitForSeconds(0.5f);
         //Character
-        int ran = Random.Range(0, 3);
-        consumerType = (ComsumerType)ran;
+        int ran = Random.Range(0, 5);
+        if (ran < 2)
+        {
+            consumerType = ComsumerType.Cow;
+        }
+        else if(ran<4)
+        {
+            consumerType = ComsumerType.Chicken;
+
+        }
+        else
+        {
+            consumerType = ComsumerType.None;
+        }
+
         switch (consumerType)
         {
             case ComsumerType.Cow:
                 roomMgr.ShowCow();
+                PublicTool.PlaySound(SoundType.Hello2);
                 break;
             case ComsumerType.Chicken:
                 roomMgr.ShowChicken();
+                PublicTool.PlaySound(SoundType.Hello1);
+
                 break;
         }
 
@@ -55,6 +77,40 @@ public partial class GameMgr : MonoSingleton<GameMgr>
             yield break ;
         }
         interactType = InteractType.Action;
+    }
+
+    public void CheckSound(int typeID)
+    {
+        switch (typeID)
+        {
+            case 2004:
+                if (consumerType == ComsumerType.Cow)
+                {
+                    PublicTool.PlaySound(SoundType.Cow);
+                }
+                else
+                {
+                    PublicTool.PlaySound(SoundType.Chicken);
+                }
+                break;
+            case 9001:
+                PublicTool.PlaySound(SoundType.Sex);
+                break;
+            case 9002:
+                if (consumerType == ComsumerType.Cow)
+                {
+                    PublicTool.PlaySound(SoundType.Cow);
+                }
+                else
+                {
+                    PublicTool.PlaySound(SoundType.Chicken);
+                }
+                break;
+            default:
+
+                PublicTool.PlaySound(SoundType.Bought);
+                break;
+        }
     }
 
     public void CheckExtraEffect(int typeID)

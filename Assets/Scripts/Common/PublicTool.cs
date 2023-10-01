@@ -16,6 +16,11 @@ public partial class PublicTool
         }
     }
 
+    public static void PlaySound(SoundType sound)
+    {
+        EventCenter.Instance.EventTrigger("PlaySound", sound);
+    }
+
     /// <summary>
     /// Useful function for Calculate angle. For example, from Target to (0,1)
     /// </summary>

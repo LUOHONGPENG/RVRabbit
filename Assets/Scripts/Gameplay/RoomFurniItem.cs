@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 using DG.Tweening;
 
 public class RoomFurniItem : MonoBehaviour
@@ -164,6 +162,12 @@ public class RoomFurniItem : MonoBehaviour
     public void ClickDeal()
     {
         FurnitureExcelItem furniItem = GetFurniData();
+        if (!CheckValid())
+        {
+            return;
+        }
+
+
         if (furniItem.furnitureType== FurniType.Other || furniItem.furnitureType == FurniType.Support)
         {
             return;
@@ -171,18 +175,27 @@ public class RoomFurniItem : MonoBehaviour
 
         if(furniItem.furnitureType == FurniType.Service && GameMgr.Instance.consumerType == ComsumerType.None)
         {
+            PublicTool.PlaySound(SoundType.Consumer);
+            return;
+        }
+
+        if (CoinChange < 0 && GameMgr.Instance.countCoin + CoinChange < 0 && furniItem.furnitureType == FurniType.Work)
+        {
+            PublicTool.PlaySound(SoundType.Money);
             return;
         }
 
 
         if (EnergyChange < 0 && GameMgr.Instance.countEnergy + EnergyChange < 0)
         {
+            PublicTool.PlaySound(SoundType.Energy);
             return;
         }
 
         GameMgr.Instance.countCoin += CoinChange;
         GameMgr.Instance.countTask += TaskChange;
         GameMgr.Instance.ChangeEnergy(EnergyChange);
+
 
         GameMgr.Instance.InvokeAction(furniItem.id);
     }

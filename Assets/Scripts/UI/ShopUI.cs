@@ -24,6 +24,13 @@ public class ShopUI : MonoBehaviour
             {
                 GameMgr.Instance.countCoin -= furni.price;
                 GameMgr.Instance.roomMgr.CreateFurniture(furni.id, new Vector2Int(-2, -2));
+                PublicTool.PlaySound(SoundType.Bought);
+
+            }
+            else
+            {
+                PublicTool.PlaySound(SoundType.Money);
+
             }
             parent.RefreshShop();
         });

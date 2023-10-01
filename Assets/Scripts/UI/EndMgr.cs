@@ -12,6 +12,8 @@ public class EndMgr : MonoBehaviour
     public Text codeEnd;
 
 
+    public List<Sprite> listSp;
+
     private void OnEnable()
     {
         EventCenter.Instance.AddEventListener("Ending", EndEvent);
@@ -22,6 +24,8 @@ public class EndMgr : MonoBehaviour
         int num = (int)arg0;
 
         objPopup.SetActive(true);
+
+        imgEnding.sprite = listSp[num];
 
         switch (num)
         {

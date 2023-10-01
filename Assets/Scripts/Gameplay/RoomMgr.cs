@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -286,6 +285,7 @@ public class RoomMgr : MonoBehaviour
 
     public void FinishCalcu()
     {
+        bool isLevel = false;
         foreach(RoomFurniItem furni in listFurniView)
         {
             if (furni.CheckValid())
@@ -321,6 +321,7 @@ public class RoomMgr : MonoBehaviour
                         if (isCombo)
                         {
                             furni.SetCurTypeID(item.changeID);
+                            isLevel = true;
                         }
                         else
                         {
@@ -342,12 +343,21 @@ public class RoomMgr : MonoBehaviour
                     }
                 }
                 furni.Level = tempLevel;
+                if (tempLevel > 0)
+                {
+                    isLevel = true;
+                }
                 //CheckTransformCondition
             }
             else
             {
                 furni.SetCurTypeID(furni.GetOriginalID());
             }
+        }
+
+        if (isLevel)
+        {
+            PublicTool.PlaySound(SoundType.LevelUp);
         }
     }
 
