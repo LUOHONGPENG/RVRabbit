@@ -73,7 +73,7 @@ MonoBehaviour:
   - id: 2001
     name: Coffee
     furnitureType: 4
-    desc: Drink to restore energy.
+    desc: Keep working!
     height: 1
     width: 1
     coinDelta: 0
@@ -90,9 +90,9 @@ MonoBehaviour:
     price: 5
     iconUrl: spCoffee
   - id: 2002
-    name: LoveLamp
+    name: Love Lamp
     furnitureType: 4
-    desc: It is strange.
+    desc: Give consumers strange emotion.
     height: 1
     width: 1
     coinDelta: 0
@@ -110,11 +110,30 @@ MonoBehaviour:
     iconUrl: spLoveLamp
   - id: 2003
     name: Rope
-    furnitureType: 5
-    desc: Seem useless.
+    furnitureType: 4
+    desc: Seem useless but can force you work.
     height: 1
     width: 1
     coinDelta: 0
+    energyDelta: -1
+    specialDelta: 0
+    timeDelta: 1
+    supportFurni1: 2
+    supportDelta1: 1
+    supportFurni2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0
+    canBuy: 1
+    price: 1
+    iconUrl: spRope
+  - id: 2004
+    name: Knife
+    furnitureType: 3
+    desc: Threat the consumers to give money.
+    height: 1
+    width: 1
+    coinDelta: 5
     energyDelta: -1
     specialDelta: 0
     timeDelta: 1
@@ -125,12 +144,31 @@ MonoBehaviour:
     xoffset: 0
     yoffset: 0
     canBuy: 1
-    price: 1
-    iconUrl: spRope
+    price: 20
+    iconUrl: spKnife
+  - id: 2005
+    name: Old Book
+    furnitureType: 4
+    desc: A old that can make you sleep faster.
+    height: 1
+    width: 1
+    coinDelta: 0
+    energyDelta: 0
+    specialDelta: 0
+    timeDelta: 0
+    supportFurni1: 1
+    supportDelta1: 2
+    supportFurni2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0
+    canBuy: 1
+    price: 20
+    iconUrl: spMagicBook
   - id: 9001
-    name: SexBed
+    name: Horny Bed
     furnitureType: 3
-    desc: Prostistution.
+    desc: Give sex service to consumers.
     height: 2
     width: 1
     coinDelta: 10
@@ -146,3 +184,22 @@ MonoBehaviour:
     canBuy: 0
     price: 0
     iconUrl: spLoveBed
+  - id: 9002
+    name: Sacrificial Rite
+    furnitureType: 3
+    desc: Scarifice a consumer.
+    height: 1
+    width: 1
+    coinDelta: 50
+    energyDelta: -5
+    specialDelta: 0
+    timeDelta: 0
+    supportFurni1: 0
+    supportDelta1: 0
+    supportFurni2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0
+    canBuy: 0
+    price: 0
+    iconUrl: spMagicCircle

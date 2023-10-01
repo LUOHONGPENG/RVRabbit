@@ -17,3 +17,7 @@ MonoBehaviour:
     originalID: 1001
     checkID: d2070000
     changeID: 9001
+  - id: 2
+    originalID: 2005
+    checkID: d3070000d4070000
+    changeID: 9002

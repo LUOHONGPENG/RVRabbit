@@ -7,6 +7,10 @@ public class UIMgr : MonoBehaviour
 {
     [Header("BasicAttribute")]
     public Text codeCoin;
+    public Text codeEnergy;
+    public Text codeTask;
+    public Text codeTime;
+
 
     [Header("MoveFurniture")]
     public Button btnMoveFurni;
@@ -47,6 +51,10 @@ public class UIMgr : MonoBehaviour
     public void RefreshUI()
     {
         codeCoin.text = GameMgr.Instance.countCoin.ToString();
+        codeEnergy.text = string.Format("{0}/{1}", GameMgr.Instance.countEnergy, GameMgr.Instance.maxEnergy);
+        codeTask.text = string.Format("{0}/{1}", GameMgr.Instance.countTask, 100);
+        codeTime.text = string.Format("{0}/{1}", GameMgr.Instance.countTime, 40);
+
 
         switch (GameMgr.Instance.interactType)
         {

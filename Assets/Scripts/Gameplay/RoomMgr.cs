@@ -154,6 +154,10 @@ public class RoomMgr : MonoBehaviour
         CreateFurniture(1003, new Vector2Int(0, 2));
         CreateFurniture(2001, new Vector2Int(1, 1));
         CreateFurniture(2002, new Vector2Int(-2, -2));
+        CreateFurniture(2003, new Vector2Int(-2, -2));
+        CreateFurniture(2004, new Vector2Int(-2, -2));
+        CreateFurniture(2005, new Vector2Int(-2, -2));
+
         //CreateFurniture(2003, new Vector2Int(2, 0));
 
     }
@@ -249,10 +253,14 @@ public class RoomMgr : MonoBehaviour
                         }
                         else
                         {
-                            furni.SetCurTypeID(item.originalID);
+                            furni.SetCurTypeID(furni.GetOriginalID());
                         }
                     }
                 }
+            }
+            else
+            {
+                furni.SetCurTypeID(furni.GetOriginalID());
             }
         }
     }
