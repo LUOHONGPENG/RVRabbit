@@ -23,7 +23,7 @@ public class ShopUI : MonoBehaviour
             if(GameMgr.Instance.countCoin>= furni.price)
             {
                 GameMgr.Instance.countCoin -= furni.price;
-                GameMgr.Instance.roomMgr.CreateFurniture(furni.id, new Vector2Int(-2, -2));
+                GameMgr.Instance.roomMgr.CreateFurniture(furni.id, new Vector2Int(-3, -2));
                 PublicTool.PlaySound(SoundType.Bought);
 
             }

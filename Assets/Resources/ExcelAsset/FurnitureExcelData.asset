@@ -19,7 +19,7 @@ MonoBehaviour:
     desc: Can rest to restore energy.
     height: 2
     width: 1
-    coinDelta: -2
+    coinDelta: -3
     energyDelta: 10
     specialDelta: 0
     timeDelta: 0
@@ -39,8 +39,8 @@ MonoBehaviour:
     desc: Develop indie game.
     height: 1
     width: 1
-    coinDelta: -2
-    energyDelta: -2
+    coinDelta: -3
+    energyDelta: -3
     specialDelta: 4
     timeDelta: 0
     supportFurni1: 0
@@ -59,8 +59,8 @@ MonoBehaviour:
     desc: Sell icecream to guest.
     height: 1
     width: 2
-    coinDelta: 5
-    energyDelta: -2
+    coinDelta: 7
+    energyDelta: -3
     specialDelta: 0
     timeDelta: 0
     supportFurni1: 0
@@ -73,6 +73,46 @@ MonoBehaviour:
     canSell: 1
     price: 10
     iconUrl: spIceCream
+  - id: 1004
+    name: Sleep Bag
+    furnitureType: 1
+    desc: Can simply sleep.
+    height: 1
+    width: 1
+    coinDelta: -2
+    energyDelta: 6
+    specialDelta: 0
+    timeDelta: 0
+    supportFurni1: 0
+    supportDelta1: 0
+    supportFurni2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0.2
+    canBuy: 1
+    canSell: 1
+    price: 15
+    iconUrl: spSleepBag
+  - id: 1005
+    name: Divination
+    furnitureType: 3
+    desc: Get some divine money
+    height: 1
+    width: 1
+    coinDelta: 4
+    energyDelta: -2
+    specialDelta: 0
+    timeDelta: 0
+    supportFurni1: 0
+    supportDelta1: 0
+    supportFurni2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0.2
+    canBuy: 1
+    canSell: 1
+    price: 10
+    iconUrl: spCard
   - id: 2001
     name: Coffee
     furnitureType: 4
@@ -84,7 +124,7 @@ MonoBehaviour:
     specialDelta: 0
     timeDelta: 0
     supportFurni1: 2
-    supportDelta1: 1
+    supportDelta1: 2
     supportFurni2: 1
     supportDelta2: -1
     xoffset: 0
@@ -104,14 +144,14 @@ MonoBehaviour:
     specialDelta: 0
     timeDelta: 0
     supportFurni1: 3
-    supportDelta1: 1
+    supportDelta1: 2
     supportFurni2: 1
     supportDelta2: -1
     xoffset: 0
     yoffset: 0.2
     canBuy: 1
     canSell: 1
-    price: 10
+    price: 5
     iconUrl: spLoveLamp
   - id: 2003
     name: Rope
@@ -139,7 +179,7 @@ MonoBehaviour:
     desc: Threat the consumers to give money.
     height: 1
     width: 1
-    coinDelta: 10
+    coinDelta: 15
     energyDelta: -1
     specialDelta: 0
     timeDelta: 0
@@ -151,7 +191,7 @@ MonoBehaviour:
     yoffset: 0
     canBuy: 1
     canSell: 1
-    price: 10
+    price: 8
     iconUrl: spKnife
   - id: 2005
     name: Old Book
@@ -165,13 +205,13 @@ MonoBehaviour:
     timeDelta: 0
     supportFurni1: 1
     supportDelta1: 2
-    supportFurni2: 0
-    supportDelta2: 0
+    supportFurni2: 3
+    supportDelta2: 1
     xoffset: 0
     yoffset: 0
     canBuy: 1
     canSell: 0
-    price: 15
+    price: 18
     iconUrl: spMagicBook
   - id: 9001
     name: Horny Bed
@@ -179,7 +219,7 @@ MonoBehaviour:
     desc: Give sex service to consumers.
     height: 2
     width: 1
-    coinDelta: 15
+    coinDelta: 20
     energyDelta: -3
     specialDelta: 0
     timeDelta: 0

@@ -19,7 +19,7 @@ public partial class GameMgr : MonoSingleton<GameMgr>
         uiMgr.Init();
         soundMgr.Init();
 
-        countCoin = 10;
+        countCoin = 5;
         countEnergy = 10;
         interactType = InteractType.Shop;
     }
