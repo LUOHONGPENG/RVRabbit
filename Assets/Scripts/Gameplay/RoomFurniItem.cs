@@ -22,7 +22,7 @@ public class RoomFurniItem : MonoBehaviour
         this.curTypeID = originalTypeID;
 
         //Init Sprite
-        spFurni.sprite = Resources.Load("Sprite/Furniture/" + GetFurniData().iconUrl, typeof(Sprite)) as Sprite;
+        RefreshSprite();
         spFurni.transform.localPosition = new Vector2((GetFurniData().width - 1) * GameGlobal.tileSize / 2 + GetFurniData().xoffset,
             (GetFurniData().height - 1) * GameGlobal.tileSize / 2 + GetFurniData().yoffset);
 
@@ -44,17 +44,28 @@ public class RoomFurniItem : MonoBehaviour
         return originalTypeID;
     }
 
-    private FurnitureExcelItem GetFurniData()
+    public void SetCurTypeID(int type)
+    {
+        curTypeID = type;
+        RefreshSprite();
+    }
+
+    public void RefreshSprite()
+    {
+        spFurni.sprite = Resources.Load("Sprite/Furniture/" + GetFurniData().iconUrl, typeof(Sprite)) as Sprite;
+    }
+
+    public FurnitureExcelItem GetFurniData()
     {
         return GameMgr.Instance.ReadFurnitureData(curTypeID);
     }
     #endregion
 
     #region PositionInfo
-    public void SetPosID(Vector2Int posID) 
+    public void SetPosID(Vector2Int posID,bool isInit) 
     {
         this.posID = posID;
-        if (posID.x >= 0 && posID.y >= 0)
+        if (CheckValid())
         {
             this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
             spFurni.sortingOrder = 99 - posID.y;
@@ -62,6 +73,10 @@ public class RoomFurniItem : MonoBehaviour
         }
         else
         {
+            if (isInit)
+            {
+                this.transform.localPosition = new Vector2(posID.x * GameGlobal.tileSize, posID.y * GameGlobal.tileSize);
+            }
             spFurni.sortingOrder = 99;
             spFurni.DOFade(0.5F, 0);
         }
@@ -119,17 +134,60 @@ public class RoomFurniItem : MonoBehaviour
 
     #endregion
 
+    #region LevelInfo
+
+    private int level = 0;
+
+    public int Level
+    {
+        get
+        {
+            if (CheckValid())
+            {
+                return level;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        set
+        {
+            level = value;
+        }
+    }
+
+    #endregion
+
     #region ClickDeal
 
     public void ClickDeal()
     {
         FurnitureExcelItem furniItem = GetFurniData();
+        float levelDelta = 1f;
+        if (Level > 0)
+        {
+            levelDelta = GameGlobal.levelAdd[Level - 1];
+        }
+        else if(Level < 0)
+        {
+            levelDelta = GameGlobal.levelSub[-Level-1];
+        }
         switch (GetFurniData().furnitureType)
         {
             case FurniType.Rest:
+                GameMgr.Instance.countCoin += furniItem.coinDelta;
+                GameMgr.Instance.ChangeEnergy(Mathf.RoundToInt(furniItem.energyDelta * levelDelta));
+                GameMgr.Instance.countTime += furniItem.timeDelta;
+                break;
             case FurniType.Service:
+                GameMgr.Instance.countCoin += Mathf.RoundToInt(furniItem.coinDelta * levelDelta);
+                GameMgr.Instance.ChangeEnergy(furniItem.energyDelta);
+                GameMgr.Instance.countTime += furniItem.timeDelta;
+                break;
             case FurniType.Work:
                 GameMgr.Instance.countCoin += furniItem.coinDelta;
+                GameMgr.Instance.countTask += Mathf.RoundToInt(furniItem.specialDelta * levelDelta); 
                 GameMgr.Instance.ChangeEnergy(furniItem.energyDelta);
                 GameMgr.Instance.countTime += furniItem.timeDelta;
                 break;

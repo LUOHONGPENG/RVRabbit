@@ -28,6 +28,7 @@ public class UIMgr : MonoBehaviour
                     break;
                 case InteractType.Move:
                     GameMgr.Instance.interactType = InteractType.Action;
+                    GameMgr.Instance.roomMgr.FinishCalcu();
                     break;
             }
         });

@@ -5,6 +5,7 @@ using UnityEngine;
 public partial class GameMgr
 {
     public int countCoin = 0;
+    public int countTask = 0;
     public int countEnergy = 10;
     public int maxEnergy = 10;
     public int countTime = 0;
@@ -31,14 +32,19 @@ public partial class GameMgr
     [HideInInspector]
     public FurnitureExcelData furnitureData;
 
+    public ComboExcelData comboData;
+
     private void InitExcel()
     {
         //Excel Data
         furnitureData = ExcelManager.Instance.GetExcelData<FurnitureExcelData, FurnitureExcelItem>();
+        comboData = ExcelManager.Instance.GetExcelData<ComboExcelData, ComboExcelItem>();
     }
 
     public FurnitureExcelItem ReadFurnitureData(int ID)
     {
         return furnitureData.GetExcelItem(ID);
     }
+
+    
 }

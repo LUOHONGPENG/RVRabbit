@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -68,12 +70,20 @@ public class RoomMgr : MonoBehaviour
             Vector2Int furniPos = furni.GetPosID();
             Vector2Int size = furni.GetSize();
 
-            if (furniPos.x < 0 || furniPos.y < 0)
+            if (!furni.CheckValid())
             {
                 continue;
             }
 
-            for (int i = 0; i < size.x; i++)
+            List<Vector2Int> listOccupyPos = furni.GetOccupyList();
+            for(int i = 0; i < listOccupyPos.Count; i++)
+            {
+                if (dicFurniOccupy.ContainsKey(listOccupyPos[i]))
+                {
+                    dicFurniOccupy[listOccupyPos[i]] = furni.GetKeyID();
+                }
+            }
+/*            for (int i = 0; i < size.x; i++)
             {
                 for (int j = 0; j < size.y; j++)
                 {
@@ -83,7 +93,7 @@ public class RoomMgr : MonoBehaviour
                         dicFurniOccupy[curPos] = furni.GetKeyID();
                     }
                 }
-            }
+            }*/
         }
     }
 
@@ -143,7 +153,7 @@ public class RoomMgr : MonoBehaviour
         CreateFurniture(1002, new Vector2Int(1, 0));
         CreateFurniture(1003, new Vector2Int(0, 2));
         CreateFurniture(2001, new Vector2Int(1, 1));
-        //CreateFurniture(2002, new Vector2Int(1, 2));
+        CreateFurniture(2002, new Vector2Int(-2, -2));
         //CreateFurniture(2003, new Vector2Int(2, 0));
 
     }
@@ -154,7 +164,7 @@ public class RoomMgr : MonoBehaviour
         RoomFurniItem itemFurni = objFurni.GetComponent<RoomFurniItem>();
         itemFurni.Init(furniKey,typeID);
         furniKey++;
-        itemFurni.SetPosID(posID);
+        itemFurni.SetPosID(posID,true);
         listFurniView.Add(itemFurni);
         dicFurniView.Add(itemFurni.GetKeyID(), itemFurni);
         RefreshRoomOccupy();
@@ -183,9 +193,10 @@ public class RoomMgr : MonoBehaviour
             listCheck.Add(pos + new Vector2Int(0, -1));
             listCheck.Add(pos + new Vector2Int(1, 0));
             listCheck.Add(pos + new Vector2Int(-1, 0));
-            for(int j = 0;i < listCheck.Count; j++)
+            for(int j = 0;j < listCheck.Count; j++)
             {
-                if (dicFurniOccupy.ContainsKey(listCheck[j]) && !listNearby.Contains(dicFurniOccupy[listCheck[j]]))
+                if (dicFurniOccupy.ContainsKey(listCheck[j]) &&
+                    !listNearby.Contains(dicFurniOccupy[listCheck[j]]))
                 {
                     listNearby.Add(dicFurniOccupy[listCheck[j]]);
                 }
@@ -194,7 +205,57 @@ public class RoomMgr : MonoBehaviour
         return listNearby;
     }
 
-    #region Calculation
+    #region FinishCalculation
+
+    public void FinishCalcu()
+    {
+        foreach(RoomFurniItem furni in listFurniView)
+        {
+            if (furni.CheckValid())
+            {
+                List<int> listNearby = GetNearByFurniture(furni.GetKeyID());
+                List<int> listNearbyTypeOriginID = new List<int>();
+                //Level
+                int tempLevel = 0;
+                for(int i = 0; i < listNearby.Count; i++)
+                {
+                    int checkFurniKey = listNearby[i];
+                    if (dicFurniView.ContainsKey(checkFurniKey))
+                    {
+                        //Level
+                        RoomFurniItem checkFurni = dicFurniView[checkFurniKey];
+                        listNearbyTypeOriginID.Add(checkFurni.GetOriginalID());
+                        tempLevel += checkFurni.GetFurniData().GetSupportEffect(furni.GetFurniData().furnitureType);
+                    }
+                }
+                furni.Level = tempLevel;
+                //CheckTransformCondition
+
+                foreach(ComboExcelItem item in GameMgr.Instance.comboData.items)
+                {
+                    if(furni.GetOriginalID() == item.originalID)
+                    {
+                        bool isCombo = true;
+                        for(int i = 0; i < item.checkID.Count; i++)
+                        {
+                            if (!listNearbyTypeOriginID.Contains(item.checkID[i]))
+                            {
+                                isCombo = false;
+                            }
+                        }
+                        if (isCombo)
+                        {
+                            furni.SetCurTypeID(item.changeID);
+                        }
+                        else
+                        {
+                            furni.SetCurTypeID(item.originalID);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
     #endregion

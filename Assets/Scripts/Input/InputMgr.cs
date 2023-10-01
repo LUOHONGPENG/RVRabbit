@@ -143,7 +143,7 @@ public partial class InputMgr : MonoSingleton<InputMgr>
             if (hit.transform == null)
             {
                 Debug.Log("ReleaseOutside");
-                draggingFurni.SetPosID(new Vector2Int(-1, -1));
+                draggingFurni.SetPosID(new Vector2Int(-1, -1),false);
                 PublicTool.RefreshOccupy();
                 EndDragFurni();
                 return;
@@ -160,7 +160,7 @@ public partial class InputMgr : MonoSingleton<InputMgr>
 
                 if (!PublicTool.CheckRoomOccupy(draggingFurni.GetKeyID(), tarPos, size))
                 {
-                    draggingFurni.SetPosID(floor.GetPosID());
+                    draggingFurni.SetPosID(floor.GetPosID(),false);
                     PublicTool.RefreshOccupy();
                 }
                 else
