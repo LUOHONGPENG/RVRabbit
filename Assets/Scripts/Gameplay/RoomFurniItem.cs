@@ -164,7 +164,12 @@ public class RoomFurniItem : MonoBehaviour
     public void ClickDeal()
     {
         FurnitureExcelItem furniItem = GetFurniData();
-        if (furniItem.furnitureType== FurniType.Other || furniItem.furnitureType == FurniType.Service)
+        if (furniItem.furnitureType== FurniType.Other || furniItem.furnitureType == FurniType.Support)
+        {
+            return;
+        }
+
+        if(furniItem.furnitureType == FurniType.Service && GameMgr.Instance.consumerType == ComsumerType.None)
         {
             return;
         }

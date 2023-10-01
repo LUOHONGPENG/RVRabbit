@@ -6,8 +6,14 @@ public enum InteractType
 {
     Move,
     Action,
-    Wait,
-    Shop
+    Wait
+}
+
+public enum ComsumerType
+{
+    None,
+    Chicken,
+    Cow
 }
 
 public enum FurniType

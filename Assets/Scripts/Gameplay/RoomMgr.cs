@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,30 @@ public class RoomMgr : MonoBehaviour
         ResetRoomView();
         InitFurniture();
     }
+
+    #region Character
+
+    public void ShowChicken()
+    {
+        tfChicken.DOLocalMoveY(2.5f, 0.5f);
+    }
+
+    public void ShowCow()
+    {
+        tfCow.DOLocalMoveY(2.5f, 0.5f);
+    }
+
+    public void HideCharacter()
+    {
+        tfChicken.DOLocalMoveY(1, 0.5f);
+        tfCow.DOLocalMoveY(1, 0.5f);
+
+    }
+
+    #endregion
+
+
+
 
     #region RoomOccupy
     public void InitRoomOccupy()

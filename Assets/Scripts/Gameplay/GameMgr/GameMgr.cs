@@ -20,7 +20,7 @@ public partial class GameMgr : MonoSingleton<GameMgr>
     }
 
     public InteractType interactType = InteractType.Move;
-
+    public ComsumerType consumerType = ComsumerType.None;
 
     public void InvokeAction(int typeID)
     {
@@ -31,7 +31,23 @@ public partial class GameMgr : MonoSingleton<GameMgr>
     public IEnumerator IE_Action(int typeID)
     {
         interactType = InteractType.Wait;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
+        roomMgr.HideCharacter();
+        yield return new WaitForSeconds(0.5f);
+        //Character
+        int ran = Random.Range(0, 3);
+        consumerType = (ComsumerType)ran;
+        switch (consumerType)
+        {
+            case ComsumerType.Cow:
+                roomMgr.ShowCow();
+                break;
+            case ComsumerType.Chicken:
+                roomMgr.ShowChicken();
+                break;
+        }
+
+
         CheckExtraEffect(typeID);
         interactType = InteractType.Action;
     }
