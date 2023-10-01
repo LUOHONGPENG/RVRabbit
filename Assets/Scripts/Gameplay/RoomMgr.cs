@@ -14,6 +14,8 @@ public class RoomMgr : MonoBehaviour
     [Header("Character")]
 
     public Animator aniRabbit;
+    public Transform tfCow;
+    public Transform tfChicken;
 
 
     [Header("RoomWallView")]
