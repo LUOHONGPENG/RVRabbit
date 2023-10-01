@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Path.GUIFramework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -79,7 +80,44 @@ public partial class InputMgr : MonoSingleton<InputMgr>
             return;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(GetMousePos(),Vector2.zero,Mathf.Infinity, LayerMask.GetMask("Furniture"));
+        switch (GameMgr.Instance.interactType)
+        {
+            case InteractType.Move:
+                StartDrag();
+                break;
+            case InteractType.Action:
+                ClickAction();
+                break;
+        }
+    }
+
+    //End Drag
+    private void Touch_canceled(InputAction.CallbackContext obj)
+    {
+        if (!isInitInput)
+        {
+            return;
+        }
+
+        switch (GameMgr.Instance.interactType)
+        {
+            case InteractType.Move:
+                EndDrag();
+                break;
+        }
+    }
+
+    private void EndDragFurni()
+    {
+        isDragging = false;
+        draggingFurni = null;
+    }
+    #endregion
+
+    #region Dragging
+    private void StartDrag()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Furniture"));
 
         if (hit.transform == null)
         {
@@ -95,15 +133,9 @@ public partial class InputMgr : MonoSingleton<InputMgr>
         }
     }
 
-    //End Drag
-    private void Touch_canceled(InputAction.CallbackContext obj)
+    private void EndDrag()
     {
-        if (!isInitInput)
-        {
-            return;
-        }
-
-        if(isDragging && draggingFurni != null)
+        if (isDragging && draggingFurni != null)
         {
             RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Floor"));
 
@@ -126,7 +158,7 @@ public partial class InputMgr : MonoSingleton<InputMgr>
                 Vector2Int tarPos = floor.GetPosID();
                 Vector2Int size = draggingFurni.GetSize();
 
-                if (!PublicTool.CheckRoomOccupy(draggingFurni.GetKeyID(),tarPos, size))
+                if (!PublicTool.CheckRoomOccupy(draggingFurni.GetKeyID(), tarPos, size))
                 {
                     draggingFurni.SetPosID(floor.GetPosID());
                     PublicTool.RefreshOccupy();
@@ -144,14 +176,6 @@ public partial class InputMgr : MonoSingleton<InputMgr>
         EndDragFurni();
     }
 
-    private void EndDragFurni()
-    {
-        isDragging = false;
-        draggingFurni = null;
-    }
-    #endregion
-
-    #region Dragging
 
     private void CheckRayDrag()
     {
@@ -164,6 +188,31 @@ public partial class InputMgr : MonoSingleton<InputMgr>
 
 
     #endregion
+
+    #region Click
+
+    private void ClickAction()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Furniture"));
+
+        if (hit.transform == null)
+        {
+            Debug.Log("NoHitFurni");
+            return;
+        }
+
+        if (hit.transform.parent.GetComponent<RoomFurniItem>() != null)
+        {
+            RoomFurniItem clickFurni = hit.transform.parent.GetComponent<RoomFurniItem>();
+
+            clickFurni.ClickDeal();
+        }
+    }
+
+
+    #endregion
+
+
 
     private void FixedUpdate()
     {

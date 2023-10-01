@@ -15,55 +15,141 @@ MonoBehaviour:
   items:
   - id: 1001
     name: Bed
-    desc: 
+    furnitureType: 1
+    desc: Can rest to restore energy.
     height: 2
     width: 1
-    xoffset: 0
-    yoffset: 0
-    canBuy: 1
-    iconUrl: spBed
-  - id: 1002
-    name: Computer
-    desc: 
-    height: 1
-    width: 1
-    xoffset: 0
-    yoffset: 0.2
-    canBuy: 1
-    iconUrl: spPC
-  - id: 2001
-    name: Coffee
-    desc: 
-    height: 1
-    width: 1
-    xoffset: 0
-    yoffset: 0.2
-    canBuy: 1
-    iconUrl: spCoffee
-  - id: 2002
-    name: LoveLamp
-    desc: 
-    height: 1
-    width: 1
-    xoffset: 0
-    yoffset: 0.2
-    canBuy: 1
-    iconUrl: spLoveLamp
-  - id: 2003
-    name: Rope
-    desc: 
-    height: 1
-    width: 1
-    xoffset: 0
-    yoffset: 0
-    canBuy: 1
-    iconUrl: spRope
-  - id: 9001
-    name: SexBed
-    desc: 
-    height: 2
-    width: 1
+    coinDelta: 0
+    energyDelta: 10
+    timeDelta: 5
+    supportFurni1: 0
+    supportValue1: 0
+    supportDelta1: 0
+    supportFurni2: 0
+    supportValue2: 0
+    supportDelta2: 0
     xoffset: 0
     yoffset: 0
     canBuy: 0
+    price: 10
+    iconUrl: spBed
+  - id: 1002
+    name: Computer
+    furnitureType: 2
+    desc: Develop indie game.
+    height: 1
+    width: 1
+    coinDelta: 1
+    energyDelta: -2
+    timeDelta: 2
+    supportFurni1: 0
+    supportValue1: 0
+    supportDelta1: 0
+    supportFurni2: 0
+    supportValue2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0.2
+    canBuy: 0
+    price: 100
+    iconUrl: spPC
+  - id: 1003
+    name: IceCream Machine
+    furnitureType: 3
+    desc: Sell icecream to guest.
+    height: 1
+    width: 2
+    coinDelta: 2
+    energyDelta: -3
+    timeDelta: 1
+    supportFurni1: 0
+    supportValue1: 0
+    supportDelta1: 0
+    supportFurni2: 0
+    supportValue2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0.4
+    canBuy: 1
+    price: 20
+    iconUrl: spIceCream
+  - id: 2001
+    name: Coffee
+    furnitureType: 4
+    desc: Drink to restore energy.
+    height: 1
+    width: 1
+    coinDelta: 0
+    energyDelta: 0
+    timeDelta: 0
+    supportFurni1: 2
+    supportValue1: 2
+    supportDelta1: 1
+    supportFurni2: 1
+    supportValue2: 3
+    supportDelta2: 2
+    xoffset: 0
+    yoffset: 0.2
+    canBuy: 1
+    price: 5
+    iconUrl: spCoffee
+  - id: 2002
+    name: LoveLamp
+    furnitureType: 4
+    desc: It is strange.
+    height: 1
+    width: 1
+    coinDelta: 0
+    energyDelta: 0
+    timeDelta: 0
+    supportFurni1: 3
+    supportValue1: 1
+    supportDelta1: 1
+    supportFurni2: 1
+    supportValue2: 2
+    supportDelta2: -2
+    xoffset: 0
+    yoffset: 0.2
+    canBuy: 1
+    price: 20
+    iconUrl: spLoveLamp
+  - id: 2003
+    name: Rope
+    furnitureType: 5
+    desc: Seem useless.
+    height: 1
+    width: 1
+    coinDelta: 0
+    energyDelta: -1
+    timeDelta: 1
+    supportFurni1: 0
+    supportValue1: 0
+    supportDelta1: 0
+    supportFurni2: 0
+    supportValue2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0
+    canBuy: 1
+    price: 1
+    iconUrl: spRope
+  - id: 9001
+    name: SexBed
+    furnitureType: 3
+    desc: Prostistution.
+    height: 2
+    width: 1
+    coinDelta: 10
+    energyDelta: -1
+    timeDelta: 3
+    supportFurni1: 0
+    supportValue1: 0
+    supportDelta1: 0
+    supportFurni2: 0
+    supportValue2: 0
+    supportDelta2: 0
+    xoffset: 0
+    yoffset: 0
+    canBuy: 0
+    price: 0
     iconUrl: spLoveBed

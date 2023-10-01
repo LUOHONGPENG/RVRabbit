@@ -27,6 +27,6 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
             instance = this as T;
         }
         Init();
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 }

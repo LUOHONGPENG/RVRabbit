@@ -32,7 +32,6 @@ public class RoomFurniItem : MonoBehaviour
     }
 
 
-
     #region TypeInfo
     public int GetKeyID()
     {
@@ -89,4 +88,26 @@ public class RoomFurniItem : MonoBehaviour
     }
 
     #endregion
+
+    #region ClickDeal
+
+    public void ClickDeal()
+    {
+        FurnitureExcelItem furniItem = GetFurniData();
+        switch (GetFurniData().furnitureType)
+        {
+            case FurniType.Rest:
+            case FurniType.Service:
+            case FurniType.Work:
+                GameMgr.Instance.countCoin += furniItem.coinDelta;
+                GameMgr.Instance.ChangeEnergy(furniItem.energyDelta);
+                GameMgr.Instance.countTime += furniItem.timeDelta;
+                break;
+
+        }
+    }
+
+    #endregion
+
+
 }

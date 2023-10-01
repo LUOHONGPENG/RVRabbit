@@ -8,3 +8,21 @@ public enum InteractType
     Action,
     Wait
 }
+
+public enum FurniType
+{
+    None,
+    Rest,
+    Work,
+    Service,
+    Support,
+    Other
+}
+
+public enum SupportValueType
+{
+    None,
+    Coin,
+    Energy,
+    Time
+}
